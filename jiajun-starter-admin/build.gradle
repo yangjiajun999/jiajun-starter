@@ -1,0 +1,16 @@
+group = 'com.jiajun.starter.admin'
+version = '1.0.0'
+
+dependencies {
+    implementation project(":jiajun-starter-api")
+    implementation project(":jiajun-starter-service")
+    implementation project(":jiajun-starter-model")
+    implementation project(":jiajun-starter-common")
+
+    implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+
+    implementation swaggerSpringBootStarter
+    implementation pagehelperSpringBootStarter
+    implementation mapperSpringBootStarter
+    implementation lombok
+}

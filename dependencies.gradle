@@ -1,0 +1,17 @@
+ext {
+    springBootVersion = '2.1.6.RELEASE'
+
+    springBootStarterWeb = 'org.springframework.boot:spring-boot-starter-web'
+    springBootStarterUndertow = 'org.springframework.boot:spring-boot-starter-undertow'
+    springBootStarterJdbc = 'org.springframework.boot:spring-boot-starter-jdbc'
+
+    druidSpringBootStarter = 'com.alibaba:druid-spring-boot-starter:1.1.17'
+    mapperSpringBootStarter = 'tk.mybatis:mapper-spring-boot-starter:2.0.3'
+    pagehelperSpringBootStarter = 'com.github.pagehelper:pagehelper-spring-boot-starter:1.2.5'
+    swaggerSpringBootStarter = 'com.spring4all:swagger-spring-boot-starter:1.9.0.RELEASE'
+
+    mysqlConnectorJava = 'mysql:mysql-connector-java:5.1.41'
+    lombok = 'org.projectlombok:lombok:1.16.18'
+
+    springBootStarterTest = 'org.springframework.boot:spring-boot-starter-test'
+}

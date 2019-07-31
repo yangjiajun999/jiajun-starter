@@ -1,0 +1,10 @@
+rootProject.name = 'jiajun-starter'
+
+include 'jiajun-starter-web'
+include 'jiajun-starter-api'
+include 'jiajun-starter-ucenter'
+include 'jiajun-starter-service'
+include 'jiajun-starter-model'
+include 'jiajun-starter-common'
+include 'jiajun-starter-admin'
+

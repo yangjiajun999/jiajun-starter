@@ -1,0 +1,36 @@
+server:
+  undertow:
+    worker-threads: 32
+    io-threads: 4
+spring:
+  #数据源配置
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/jiajun_starter?useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull
+      username: root
+      password: 123456
+      #最大连接池数量
+      max-active: 2000
+      #最小连接池数量
+      min-idle: 200
+      #获取连接时最大等待时间，单位毫秒
+      max-wait: 60000
+      #检测连接是否有效
+      validation-query: SELECT 'x'
+      #Destroy线程会检测连接的间隔时间
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 60000
+      web-stat-filter:
+        enabled: true
+      stat-view-servlet:
+        #开启监控页面
+        enabled: true
+        url-pattern: /druid/*
+      filter:
+        stat:
+          #显示查询日志
+          log-slow-sql: true
+          #定义多少秒内为慢查询
+          slow-sql-millis: 2000
+          #合并查询记录
+          merge-sql: true
