@@ -34,3 +34,16 @@ spring:
           slow-sql-millis: 2000
           #合并查询记录
           merge-sql: true
+
+  redis:
+    host: localhost
+    database: 0
+    port: 6379
+    password:
+    timeout: 6000ms
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0

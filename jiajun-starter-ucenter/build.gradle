@@ -13,4 +13,7 @@ dependencies {
     implementation pagehelperSpringBootStarter
     implementation mapperSpringBootStarter
     implementation lombok
+
+    implementation commonsLang
+    implementation kaptcha
 }

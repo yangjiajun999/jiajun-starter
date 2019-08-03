@@ -5,6 +5,8 @@ ext {
     springBootStarterUndertow = 'org.springframework.boot:spring-boot-starter-undertow'
     springBootStarterJdbc = 'org.springframework.boot:spring-boot-starter-jdbc'
 
+    springBootStarterDataRedis = 'org.springframework.boot:spring-boot-starter-data-redis:2.1.6.RELEASE'
+
     druidSpringBootStarter = 'com.alibaba:druid-spring-boot-starter:1.1.17'
     mapperSpringBootStarter = 'tk.mybatis:mapper-spring-boot-starter:2.0.3'
     pagehelperSpringBootStarter = 'com.github.pagehelper:pagehelper-spring-boot-starter:1.2.5'
@@ -13,5 +15,11 @@ ext {
     mysqlConnectorJava = 'mysql:mysql-connector-java:5.1.41'
     lombok = 'org.projectlombok:lombok:1.16.18'
 
+    commonsLang = 'org.apache.commons:commons-lang3:3.1'
+    commonsIO = 'commons-io:commons-io:2.6'
+    kaptcha = 'com.github.penggle:kaptcha:2.3.2'
+
     springBootStarterTest = 'org.springframework.boot:spring-boot-starter-test'
+
+    swagger2markup = 'io.github.swagger2markup:swagger2markup:1.3.3'
 }

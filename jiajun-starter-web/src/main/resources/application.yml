@@ -25,14 +25,9 @@ mapper:
 #swagger文档相关配置
 swagger:
   enabled: true
-  title: 云南职校项目接口文档
-  description: 云南职校项目相关接口说明
+  title: 项目接口文档
+  description: 项目相关接口说明
   version: 1.0
   base-package: com.jiajun.starter
   authorization:
     key-name: Authorization
-
-#打印mybatis动态生成的sql语句
-logging:
-  level:
-    com.jiajun.starter.ucenter.mapper: debug

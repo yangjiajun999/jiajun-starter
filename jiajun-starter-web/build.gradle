@@ -7,6 +7,7 @@ buildscript {
 plugins {
     id 'org.springframework.boot' version '2.1.6.RELEASE'
     id "org.flywaydb.flyway" version "5.1.3"
+    id 'org.asciidoctor.jvm.pdf' version '2.2.0'
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -32,6 +33,7 @@ dependencies {
     implementation mysqlConnectorJava
 
     testImplementation springBootStarterTest
+    implementation swagger2markup
 }
 
 flyway {
@@ -40,3 +42,37 @@ flyway {
     user = 'root'
     password = '123456'
 }
+
+ext {
+    asciiDocOutputDir = file("${buildDir}/asciidoc")
+    pdfFontsDir = file("${buildDir}/fonts")
+    pdfThemesDir = file("${buildDir}/themes")
+    swaggerVersion = '2.9.2'
+}
+
+test {
+    systemProperty 'io.springfox.staticdocs.outputDir', asciiDocOutputDir
+}
+
+pdfThemes {
+    local 'basic', {
+        styleDir = pdfThemesDir
+        styleName = 'default'
+    }
+}
+
+asciidoctorPdf {
+    sourceDir(asciiDocOutputDir.absolutePath)
+    sources {
+        include "swagger.adoc"
+    }
+    fontsDir(pdfFontsDir.absolutePath)
+    theme("basic")
+}
+
+task genPdf(type: Test, dependsOn: test) {
+    include '**/*SwaggerTest.class'
+    exclude '**/*'
+    dependsOn(asciidoctorPdf)
+}
+
