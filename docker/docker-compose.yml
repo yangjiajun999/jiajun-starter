@@ -10,6 +10,13 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 123456
 
+  redis:
+    container_name: redis
+    image: redis:5.0.3
+    restart: always
+    ports:
+      - "6379:6379"
+
   adminer:
     container_name: adminer
     image: adminer
