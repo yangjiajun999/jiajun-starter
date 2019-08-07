@@ -6,4 +6,6 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}"
 
     implementation lombok
+    implementation commonsLang
+    implementation kaptcha
 }
