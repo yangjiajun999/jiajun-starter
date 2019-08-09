@@ -9,7 +9,7 @@ import java.util.List;
 
 @Data
 @Table(name = "sys_menu")
-public class SysMenu {
+public class SysMenuEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(value = "菜单ID", name = "menuId", example = "1")

@@ -2,7 +2,7 @@ package com.jiajun.starter.ucenter.controller;
 
 import com.jiajun.starter.api.ucenter.SysLoginControllerApi;
 import com.jiajun.starter.common.web.RestResponse;
-import com.jiajun.starter.model.ucenter.dto.SysLoginDto;
+import com.jiajun.starter.model.ucenter.dto.SysLoginDTO;
 import com.jiajun.starter.service.ucenter.SysCaptchaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -63,7 +63,7 @@ public class SysLoginController implements SysLoginControllerApi {
 
     @Override
     @PostMapping("login")
-    public RestResponse<Boolean> login(@Validated @RequestBody SysLoginDto sysLoginDto) {
+    public RestResponse<Boolean> login(@Validated @RequestBody SysLoginDTO sysLoginDto) {
         boolean captcha = sysCaptchaService.validate(sysLoginDto.getUuid(), sysLoginDto.getCaptcha());
         return success(captcha);
     }

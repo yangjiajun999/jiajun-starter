@@ -1,7 +1,7 @@
 package com.jiajun.starter.api.ucenter;
 
 import com.jiajun.starter.common.web.RestResponse;
-import com.jiajun.starter.model.ucenter.dto.SysLoginDto;
+import com.jiajun.starter.model.ucenter.dto.SysLoginDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -18,7 +18,7 @@ public interface SysLoginControllerApi {
     void captcha(String uuid) throws IOException;
 
     @ApiOperation("用户登录验证")
-    RestResponse<Boolean> login(SysLoginDto sysLoginDto);
+    RestResponse<Boolean> login(SysLoginDTO sysLoginDto);
 
     @ApiOperation("语言切换")
     RestResponse<String> changeSessionLanauage(String lang);

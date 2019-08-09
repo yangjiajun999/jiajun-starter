@@ -2,7 +2,7 @@ package com.jiajun.starter.ucenter.controller;
 
 import com.jiajun.starter.api.ucenter.SysMenuControllerApi;
 import com.jiajun.starter.common.web.RestResponse;
-import com.jiajun.starter.model.ucenter.entity.SysMenu;
+import com.jiajun.starter.model.ucenter.entity.SysMenuEntity;
 import com.jiajun.starter.service.ucenter.SysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,13 +26,13 @@ public class SysMenuController implements SysMenuControllerApi {
 
     @Override
     @GetMapping("/list")
-    public RestResponse<List<SysMenu>> list(){
-        List<SysMenu> menuList = sysMenuService.list();
+    public RestResponse<List<SysMenuEntity>> list(){
+        List<SysMenuEntity> menuList = sysMenuService.list();
 
-        for(SysMenu sysMenu : menuList){
-            SysMenu parentMenu = sysMenuService.getById(sysMenu.getParentId());
+        for(SysMenuEntity sysMenuEntity : menuList){
+            SysMenuEntity parentMenu = sysMenuService.getById(sysMenuEntity.getParentId());
             if(parentMenu != null){
-                sysMenu.setParentName(parentMenu.getName());
+                sysMenuEntity.setParentName(parentMenu.getName());
             }
         }
 

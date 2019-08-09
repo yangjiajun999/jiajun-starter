@@ -1,6 +1,6 @@
 package com.jiajun.starter.service.ucenter;
 
-import com.jiajun.starter.model.ucenter.entity.SysMenu;
+import com.jiajun.starter.model.ucenter.entity.SysMenuEntity;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public interface SysMenuService {
      * 获取菜单列表
      * @return
      */
-    List<SysMenu> list();
+    List<SysMenuEntity> list();
 
-    SysMenu getById(Long parentId);
+    SysMenuEntity getById(Long parentId);
 }

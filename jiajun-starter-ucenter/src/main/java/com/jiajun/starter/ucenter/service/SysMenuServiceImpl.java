@@ -1,6 +1,6 @@
 package com.jiajun.starter.ucenter.service;
 
-import com.jiajun.starter.model.ucenter.entity.SysMenu;
+import com.jiajun.starter.model.ucenter.entity.SysMenuEntity;
 import com.jiajun.starter.service.ucenter.SysMenuService;
 import com.jiajun.starter.ucenter.mapper.SysMenuMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +19,12 @@ public class SysMenuServiceImpl implements SysMenuService {
     private SysMenuMapper sysMenuMapper;
 
     @Override
-    public List<SysMenu> list() {
+    public List<SysMenuEntity> list() {
         return sysMenuMapper.selectAll();
     }
 
     @Override
-    public SysMenu getById(Long parentId) {
+    public SysMenuEntity getById(Long parentId) {
         return sysMenuMapper.selectByPrimaryKey(parentId);
     }
 }

@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
  * @Description:
  */
 @Data
-public class SysLoginDto {
+public class SysLoginDTO {
     @ApiModelProperty(value = "username", name = "用户名", example = "admin")
     private String username;
     @ApiModelProperty(value = "password", name = "密码", example = "123456")

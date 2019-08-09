@@ -1,6 +1,8 @@
 package com.jiajun.starter.service.ucenter;
 
 import com.jiajun.starter.model.ucenter.SysUser;
+import com.jiajun.starter.model.ucenter.dto.SysUserDTO;
+import com.jiajun.starter.model.ucenter.vo.SysUserVO;
 
 import java.util.List;
 
@@ -10,7 +12,7 @@ import java.util.List;
  * @Description:
  */
 public interface UcenterService {
-    List<SysUser> getAll();
+    List<SysUserVO> getAll(SysUserDTO sysUserDTO);
 
     SysUser getById(int id);
 }

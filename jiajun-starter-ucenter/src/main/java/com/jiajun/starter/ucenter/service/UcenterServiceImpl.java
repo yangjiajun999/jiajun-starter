@@ -1,6 +1,9 @@
 package com.jiajun.starter.ucenter.service;
 
+import com.github.pagehelper.PageHelper;
 import com.jiajun.starter.model.ucenter.SysUser;
+import com.jiajun.starter.model.ucenter.dto.SysUserDTO;
+import com.jiajun.starter.model.ucenter.vo.SysUserVO;
 import com.jiajun.starter.service.ucenter.UcenterService;
 import com.jiajun.starter.ucenter.mapper.UcenterMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +22,10 @@ public class UcenterServiceImpl implements UcenterService {
     private UcenterMapper ucenterMapper;
 
     @Override
-    public List<SysUser> getAll() {
-        return ucenterMapper.selectAll();
+    public List<SysUserVO> getAll(SysUserDTO sysUserDTO) {
+        PageHelper.startPage(sysUserDTO.getPageNum(), sysUserDTO.getPageSize());
+
+        return ucenterMapper.getAll(sysUserDTO);
     }
 
     @Override
