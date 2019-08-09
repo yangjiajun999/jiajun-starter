@@ -18,6 +18,10 @@ ext {
     commonsLang = 'org.apache.commons:commons-lang3:3.1'
     commonsIO = 'commons-io:commons-io:2.6'
     kaptcha = 'com.github.penggle:kaptcha:2.3.2'
+    fastjson = 'com.alibaba:fastjson:1.2.56'
+
+    shiroCore = 'org.apache.shiro:shiro-core:1.4.0'
+    shiroSpring = 'org.apache.shiro:shiro-spring:1.4.0'
 
     springBootStarterTest = 'org.springframework.boot:spring-boot-starter-test'
 

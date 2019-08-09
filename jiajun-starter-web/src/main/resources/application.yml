@@ -33,5 +33,5 @@ swagger:
   version: 1.0
   base-package: com.jiajun.starter
   authorization:
-    key-name: Authorization
+    key-name: token
 

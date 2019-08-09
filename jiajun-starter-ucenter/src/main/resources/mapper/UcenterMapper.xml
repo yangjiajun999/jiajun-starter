@@ -1,9 +1,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jiajun.starter.ucenter.mapper.UcenterMapper">
     <select id="getAll" parameterType="SysUserDTO" resultType="com.jiajun.starter.model.ucenter.vo.SysUserVO">
-        SELECT username, password, salt, email, realname
-             , mobile, sex, address, source, status
-             , create_user_id, create_time
+        SELECT id, username, password, salt, email, realname
+        , mobile, sex, address, source, status
+        , create_user_id, create_time
         FROM sys_user
         <where>
             <if test="username != null and username != ''">

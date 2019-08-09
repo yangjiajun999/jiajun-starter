@@ -18,7 +18,7 @@ public interface SysLoginControllerApi {
     void captcha(String uuid) throws IOException;
 
     @ApiOperation("用户登录验证")
-    RestResponse<Boolean> login(SysLoginDTO sysLoginDto);
+    RestResponse<String> login(SysLoginDTO sysLoginDto);
 
     @ApiOperation("语言切换")
     RestResponse<String> changeSessionLanauage(String lang);

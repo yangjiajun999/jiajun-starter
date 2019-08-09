@@ -26,12 +26,12 @@ public class UcenterController implements UcenterControllerApi {
     private UcenterService ucenterService;
 
     @PostMapping("/getAll")
-    public RestResponse<PageInfo<SysUserVO>> getAll(@RequestBody SysUserDTO sysUserDTO){
+    public RestResponse<PageInfo<SysUserVO>> getAll(@RequestBody SysUserDTO sysUserDTO) {
         return success(new PageInfo<>(ucenterService.getAll(sysUserDTO)));
     }
 
     @GetMapping("/getById")
-    public RestResponse<SysUser> getById(@RequestParam(value = "id") int id){
+    public RestResponse<SysUser> getById(@RequestParam(value = "id") int id) {
         return success(ucenterService.getById(id));
     }
 }

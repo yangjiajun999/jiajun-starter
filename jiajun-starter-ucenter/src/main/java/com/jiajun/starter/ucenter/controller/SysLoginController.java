@@ -1,9 +1,14 @@
 package com.jiajun.starter.ucenter.controller;
 
 import com.jiajun.starter.api.ucenter.SysLoginControllerApi;
+import com.jiajun.starter.common.exception.BusinessException;
+import com.jiajun.starter.common.web.RestCode;
 import com.jiajun.starter.common.web.RestResponse;
 import com.jiajun.starter.model.ucenter.dto.SysLoginDTO;
+import com.jiajun.starter.model.ucenter.entity.SysUserEntity;
 import com.jiajun.starter.service.ucenter.SysCaptchaService;
+import com.jiajun.starter.service.ucenter.UcenterService;
+import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +35,8 @@ public class SysLoginController implements SysLoginControllerApi {
     private HttpServletResponse response;
     @Autowired
     private SysCaptchaService sysCaptchaService;
+    @Autowired
+    private UcenterService ucenterService;
     @Autowired
     private HttpServletRequest request;
 
@@ -63,8 +70,30 @@ public class SysLoginController implements SysLoginControllerApi {
 
     @Override
     @PostMapping("login")
-    public RestResponse<Boolean> login(@Validated @RequestBody SysLoginDTO sysLoginDto) {
+    public RestResponse<String> login(@Validated @RequestBody SysLoginDTO sysLoginDto) {
         boolean captcha = sysCaptchaService.validate(sysLoginDto.getUuid(), sysLoginDto.getCaptcha());
-        return success(captcha);
+        if (!captcha) {
+            throw new BusinessException(RestCode.CAPTCHA_NOT_CORRECT);
+        }
+
+        //用户信息
+        SysUserEntity user = ucenterService.findByUsername(sysLoginDto.getUsername());
+
+        //用户名不存在
+        if (user == null) {
+            throw new BusinessException(RestCode.USERNAME_NOT_EXSIT);
+        }
+
+        //密码错误
+        if (!user.getPassword().equals(new Sha256Hash(sysLoginDto.getPassword(), user.getSalt()).toHex())) {
+            throw new BusinessException(RestCode.PASSWORD_NOT_CORRECT);
+        }
+
+        //账号锁定
+        if (!user.isStatus()) {
+            throw new BusinessException(RestCode.ACCOUNT_LOCKED);
+        }
+
+        return success(ucenterService.createToken(user));
     }
 }

@@ -16,4 +16,6 @@ dependencies {
 
     implementation commonsLang
     implementation kaptcha
+
+    implementation shiroCore
 }
