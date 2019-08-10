@@ -51,7 +51,16 @@ public class UcenterServiceImpl implements UcenterService {
 
     @Override
     public String createToken(SysUserEntity user) {
-        String token = TokenUtil.createToken();
+        String token = (String) redisUtil.get(user.getUsername());
+
+        if (token != null) {
+            redisUtil.expire(user.getUsername(), EXPIRETIME);
+            redisUtil.set(token, user, EXPIRETIME);
+            return token;
+        }
+
+        token = TokenUtil.createToken();
+        redisUtil.set(user.getUsername(), token, EXPIRETIME);
         redisUtil.set(token, user, EXPIRETIME);
         return token;
     }

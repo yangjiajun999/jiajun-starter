@@ -56,7 +56,7 @@ public class OAuth2Realm extends AuthorizingRealm {
         SysUserEntity sysUserEntity = shiroService.findByToken(accessToken);
         //token失效
         if(sysUserEntity == null){
-            throw new BusinessException(RestCode.OK);
+            throw new BusinessException(RestCode.USERNAME_NOT_EXSIT);
         }
 
         //账号锁定

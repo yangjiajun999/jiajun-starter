@@ -47,7 +47,7 @@ public class SysCaptchaServiceImpl implements SysCaptchaService {
         }
 
         if(!redisCode.equalsIgnoreCase(code)) {
-            throw new BusinessException(RestCode.UUID_NOT_EXSIT);
+            throw new BusinessException(RestCode.CAPTCHA_NOT_CORRECT);
         }
 
         return true;

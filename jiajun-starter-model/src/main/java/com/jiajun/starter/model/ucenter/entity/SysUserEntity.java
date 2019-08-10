@@ -2,6 +2,7 @@ package com.jiajun.starter.model.ucenter.entity;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
@@ -13,9 +14,11 @@ import java.io.Serializable;
  * @Description:
  */
 @Data
+@ToString
 @Table(name = "sys_user")
 public class SysUserEntity implements Serializable {
     @ApiModelProperty(value = "主键id", name = "id", example = "1")
+    @Column(name = "id")
     private long id;
 
     @ApiModelProperty(value = "用户名", name = "username", example = "admin")
