@@ -1,9 +1,9 @@
 package com.jiajun.starter.ucenter.service;
 
 import com.github.pagehelper.PageHelper;
+import com.jiajun.starter.common.utils.Constant;
 import com.jiajun.starter.common.utils.RedisUtil;
 import com.jiajun.starter.common.utils.TokenUtil;
-import com.jiajun.starter.model.ucenter.SysUser;
 import com.jiajun.starter.model.ucenter.dto.SysUserDTO;
 import com.jiajun.starter.model.ucenter.entity.SysUserEntity;
 import com.jiajun.starter.model.ucenter.vo.SysUserVO;
@@ -27,8 +27,6 @@ public class UcenterServiceImpl implements UcenterService {
     @Autowired
     private RedisUtil redisUtil;
 
-    private final static Long EXPIRETIME = 3600L;
-
     @Override
     public List<SysUserVO> getAll(SysUserDTO sysUserDTO) {
         PageHelper.startPage(sysUserDTO.getPageNum(), sysUserDTO.getPageSize());
@@ -37,8 +35,8 @@ public class UcenterServiceImpl implements UcenterService {
     }
 
     @Override
-    public SysUser getById(int id) {
-        return ucenterMapper.getById(id);
+    public SysUserEntity getById(int id) {
+        return ucenterMapper.selectByPrimaryKey(id);
     }
 
     @Override
@@ -53,15 +51,22 @@ public class UcenterServiceImpl implements UcenterService {
     public String createToken(SysUserEntity user) {
         String token = (String) redisUtil.get(user.getUsername());
 
+        //已登录过期时间自动重新计算
         if (token != null) {
-            redisUtil.expire(user.getUsername(), EXPIRETIME);
-            redisUtil.set(token, user, EXPIRETIME);
+            redisUtil.expire(user.getUsername(), Constant.TOKENEXPIRETIME);
             return token;
         }
 
         token = TokenUtil.createToken();
-        redisUtil.set(user.getUsername(), token, EXPIRETIME);
-        redisUtil.set(token, user, EXPIRETIME);
+        redisUtil.set(user.getUsername(), token, Constant.TOKENEXPIRETIME);
+        redisUtil.zadd(Constant.REDISKEY, user.getId(), token);
         return token;
     }
+
+    @Override
+    public List<String> getPermsByUserId(Long userId) {
+        return ucenterMapper.getPermsByUserId(userId);
+    }
+
+
 }

@@ -16,9 +16,11 @@
         </where>
     </select>
 
-    <select id="getById" parameterType="Integer" resultType="SysUser">
-        SELECT id, username, password
-        FROM sys_user
-        WHERE id = #{id}
+    <select id="getPermsByUserId" resultType="string">
+        SELECT m.perms
+        FROM sys_user_role ur
+                 LEFT JOIN sys_role_menu rm ON ur.role_id = rm.role_id
+                 LEFT JOIN sys_menu m ON rm.menu_id = m.menu_id
+        WHERE ur.user_id = #{userId}
     </select>
 </mapper>

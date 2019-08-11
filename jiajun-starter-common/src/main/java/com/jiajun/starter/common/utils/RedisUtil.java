@@ -556,4 +556,35 @@ public final class RedisUtil {
             return 0;
         }
     }
+
+    // ===============================有序集合=================================
+    /**
+     * 向有序集合中插入数据
+     * @param key   键
+     * @param score 移除多少个
+     * @param value 值
+     */
+    public boolean zadd(String key, double score, Object value) {
+        try {
+            return redisTemplate.opsForZSet().add(key, value, score);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * 获取有序集合值对应的score
+     * @param key
+     * @param value
+     * @return
+     */
+    public double zScore(String key, Object value) {
+        try {
+            return redisTemplate.opsForZSet().score(key, value);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

@@ -15,7 +15,16 @@ import java.util.List;
  * @Description:
  */
 public interface UcenterMapper extends Mapper<SysUserEntity>, MySqlMapper<SysUserEntity> {
+    /**
+     * 根据条件查下所有用户数据
+     * @param sysUserDTO
+     * @return
+     */
     List<SysUserVO> getAll(SysUserDTO sysUserDTO);
 
-    SysUser getById(int id);
+    /**
+     * 查询用户的所有权限
+     * @param userId  用户ID
+     */
+    List<String> getPermsByUserId(Long userId);
 }

@@ -2,6 +2,7 @@ package com.jiajun.starter.ucenter.service;
 
 import com.google.code.kaptcha.Producer;
 import com.jiajun.starter.common.exception.BusinessException;
+import com.jiajun.starter.common.utils.Constant;
 import com.jiajun.starter.common.utils.RedisUtil;
 import com.jiajun.starter.common.web.RestCode;
 import com.jiajun.starter.service.ucenter.SysCaptchaService;
@@ -18,8 +19,6 @@ import java.awt.image.BufferedImage;
  */
 @Service
 public class SysCaptchaServiceImpl implements SysCaptchaService {
-    private final static Long EXPIRETIME = 300L;
-
     @Autowired
     private Producer producer;
     @Autowired
@@ -34,7 +33,7 @@ public class SysCaptchaServiceImpl implements SysCaptchaService {
         //生成文字验证码
         String code = producer.createText();
 
-        redisUtil.set(uuid, code, EXPIRETIME);
+        redisUtil.set(uuid, code, Constant.CAPTCHAEXPIRETIME);
 
         return producer.createImage(code);
     }

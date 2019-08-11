@@ -6,6 +6,7 @@ import com.jiajun.starter.common.web.AbstractController;
 import com.jiajun.starter.common.web.RestResponse;
 import com.jiajun.starter.model.ucenter.SysUser;
 import com.jiajun.starter.model.ucenter.dto.SysUserDTO;
+import com.jiajun.starter.model.ucenter.entity.SysUserEntity;
 import com.jiajun.starter.model.ucenter.vo.SysUserVO;
 import com.jiajun.starter.service.ucenter.UcenterService;
 import lombok.extern.java.Log;
@@ -36,7 +37,7 @@ public class UcenterController extends AbstractController implements UcenterCont
     }
 
     @GetMapping("/getById")
-    public RestResponse<SysUser> getById(@RequestParam(value = "id") int id) {
+    public RestResponse<SysUserEntity> getById(@RequestParam(value = "id") int id) {
         return success(ucenterService.getById(id));
     }
 }

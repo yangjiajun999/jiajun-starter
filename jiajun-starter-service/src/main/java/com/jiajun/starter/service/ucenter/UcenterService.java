@@ -15,9 +15,11 @@ import java.util.List;
 public interface UcenterService {
     List<SysUserVO> getAll(SysUserDTO sysUserDTO);
 
-    SysUser getById(int id);
+    SysUserEntity getById(int id);
 
     SysUserEntity findByUsername(String username);
 
     String createToken(SysUserEntity user);
+
+    List<String> getPermsByUserId(Long userId);
 }
