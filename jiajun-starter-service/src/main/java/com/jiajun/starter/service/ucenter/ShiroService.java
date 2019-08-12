@@ -1,6 +1,7 @@
 package com.jiajun.starter.service.ucenter;
 
 import com.jiajun.starter.model.ucenter.entity.SysUserEntity;
+import com.jiajun.starter.model.ucenter.entity.SysUserTokenEntity;
 
 import java.util.Set;
 
@@ -12,5 +13,5 @@ import java.util.Set;
 public interface ShiroService {
     Set<String> getUserPermissions(Long userId);
 
-    SysUserEntity findByToken(String accessToken);
+    SysUserEntity findByToken(SysUserTokenEntity accessToken);
 }

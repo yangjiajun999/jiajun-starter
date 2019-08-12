@@ -4,6 +4,7 @@ import com.jiajun.starter.common.utils.Constant;
 import com.jiajun.starter.common.utils.RedisUtil;
 import com.jiajun.starter.model.ucenter.entity.SysMenuEntity;
 import com.jiajun.starter.model.ucenter.entity.SysUserEntity;
+import com.jiajun.starter.model.ucenter.entity.SysUserTokenEntity;
 import com.jiajun.starter.service.ucenter.ShiroService;
 import com.jiajun.starter.service.ucenter.SysMenuService;
 import com.jiajun.starter.service.ucenter.UcenterService;
@@ -54,8 +55,7 @@ public class ShiroServiceImpl implements ShiroService {
     }
 
     @Override
-    public SysUserEntity findByToken(String token) {
-        int id = (int) redisUtil.zScore(Constant.REDISKEY, token);
-        return ucenterService.getById(id);
+    public SysUserEntity findByToken(SysUserTokenEntity tokenEntity) {
+        return ucenterService.getById((int) tokenEntity.getId());
     }
 }

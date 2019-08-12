@@ -587,4 +587,19 @@ public final class RedisUtil {
             return 0;
         }
     }
+
+    /**
+     * 删除集合中数据
+     * @param key
+     * @param values
+     * @return
+     */
+    public long zRem(String key, Object... values) {
+        try {
+            return redisTemplate.opsForZSet().remove(key, values);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

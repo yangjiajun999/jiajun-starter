@@ -1,8 +1,11 @@
 package com.jiajun.starter.common.oauth2;
 
 import com.jiajun.starter.common.exception.BusinessException;
+import com.jiajun.starter.common.utils.Constant;
+import com.jiajun.starter.common.utils.RedisUtil;
 import com.jiajun.starter.common.web.RestCode;
 import com.jiajun.starter.model.ucenter.entity.SysUserEntity;
+import com.jiajun.starter.model.ucenter.entity.SysUserTokenEntity;
 import com.jiajun.starter.service.ucenter.ShiroService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -23,6 +26,9 @@ import java.util.Set;
 public class OAuth2Realm extends AuthorizingRealm {
     @Autowired
     private ShiroService shiroService;
+    @Autowired
+    private RedisUtil redisUtil;
+
 
     @Override
     public boolean supports(AuthenticationToken token) {
@@ -52,19 +58,20 @@ public class OAuth2Realm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String accessToken = (String) token.getPrincipal();
 
-        //根据accessToken，查询用户信息
-        SysUserEntity sysUserEntity = shiroService.findByToken(accessToken);
-        //token失效
-        if(sysUserEntity == null){
-            throw new BusinessException(RestCode.USERNAME_NOT_EXSIT);
+        SysUserTokenEntity tokenEntity = (SysUserTokenEntity) redisUtil.get(accessToken);
+        if (tokenEntity == null) {
+            redisUtil.zRem(Constant.REDISKEY, accessToken);
+            throw new BusinessException(RestCode.TOKEN_INVALID);
         }
+
+        //根据accessToken，查询用户信息
+        SysUserEntity sysUserEntity = shiroService.findByToken(tokenEntity);
 
         //账号锁定
         if(!sysUserEntity.isStatus()){
             throw new BusinessException(RestCode.ACCOUNT_LOCKED);
         }
 
-        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(sysUserEntity, accessToken, getName());
-        return info;
+        return new SimpleAuthenticationInfo(sysUserEntity, accessToken, getName());
     }
 }

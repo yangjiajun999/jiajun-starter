@@ -6,6 +6,7 @@ import com.jiajun.starter.common.utils.RedisUtil;
 import com.jiajun.starter.common.utils.TokenUtil;
 import com.jiajun.starter.model.ucenter.dto.SysUserDTO;
 import com.jiajun.starter.model.ucenter.entity.SysUserEntity;
+import com.jiajun.starter.model.ucenter.entity.SysUserTokenEntity;
 import com.jiajun.starter.model.ucenter.vo.SysUserVO;
 import com.jiajun.starter.service.ucenter.UcenterService;
 import com.jiajun.starter.ucenter.mapper.UcenterMapper;
@@ -51,7 +52,7 @@ public class UcenterServiceImpl implements UcenterService {
     public String createToken(SysUserEntity user) {
         String token = (String) redisUtil.get(user.getUsername());
 
-        //已登录过期时间自动重新计算
+        //用户已登录过，过期时间自动重新计算
         if (token != null) {
             redisUtil.expire(user.getUsername(), Constant.TOKENEXPIRETIME);
             return token;
@@ -59,6 +60,7 @@ public class UcenterServiceImpl implements UcenterService {
 
         token = TokenUtil.createToken();
         redisUtil.set(user.getUsername(), token, Constant.TOKENEXPIRETIME);
+        redisUtil.set(token, new SysUserTokenEntity(user.getId(), user.getUsername(), token));
         redisUtil.zadd(Constant.REDISKEY, user.getId(), token);
         return token;
     }
