@@ -2,6 +2,7 @@ package com.jiajun.starter.api.ucenter;
 
 import com.jiajun.starter.common.web.RestResponse;
 import com.jiajun.starter.model.ucenter.dto.SysLoginDTO;
+import com.jiajun.starter.model.ucenter.dto.SysRegDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -22,4 +23,7 @@ public interface SysLoginControllerApi {
 
     @ApiOperation("语言切换")
     RestResponse<String> changeSessionLanauage(String lang);
+
+    @ApiOperation("邮件发送注册验证码")
+    RestResponse<String> getRegCaptcha(SysRegDTO sysRegDTO);
 }

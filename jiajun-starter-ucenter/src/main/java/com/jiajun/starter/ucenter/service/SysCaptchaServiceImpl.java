@@ -39,6 +39,13 @@ public class SysCaptchaServiceImpl implements SysCaptchaService {
     }
 
     @Override
+    public String getRegCaptcha(String uuid) {
+        String code = producer.createText();
+        redisUtil.set(uuid, code, Constant.CAPTCHAEXPIRETIME);
+        return code;
+    }
+
+    @Override
     public boolean validate(String uuid, String code) {
         String redisCode = (String) redisUtil.get(uuid);
         if(redisCode == null) {

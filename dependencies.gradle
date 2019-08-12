@@ -6,6 +6,7 @@ ext {
     springBootStarterJdbc = 'org.springframework.boot:spring-boot-starter-jdbc'
 
     springBootStarterDataRedis = 'org.springframework.boot:spring-boot-starter-data-redis'
+    springBootStarterMail = 'org.springframework.boot:pring-boot-starter-mail'
 
     druidSpringBootStarter = 'com.alibaba:druid-spring-boot-starter:1.1.17'
     mapperSpringBootStarter = 'tk.mybatis:mapper-spring-boot-starter:2.0.3'

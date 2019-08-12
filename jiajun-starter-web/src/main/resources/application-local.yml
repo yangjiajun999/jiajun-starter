@@ -47,3 +47,10 @@ spring:
         max-wait: -1
         max-idle: 8
         min-idle: 0
+
+  mail:
+    host: mail.retechcorp.com
+    username: procom@retechcorp.com
+    password: retech654321
+    default-encoding: UTF-8
+    from: procom@retechcorp.com

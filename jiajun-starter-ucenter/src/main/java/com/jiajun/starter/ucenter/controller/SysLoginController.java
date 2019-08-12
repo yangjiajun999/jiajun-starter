@@ -2,9 +2,11 @@ package com.jiajun.starter.ucenter.controller;
 
 import com.jiajun.starter.api.ucenter.SysLoginControllerApi;
 import com.jiajun.starter.common.exception.BusinessException;
+import com.jiajun.starter.common.utils.MailUtil;
 import com.jiajun.starter.common.web.RestCode;
 import com.jiajun.starter.common.web.RestResponse;
 import com.jiajun.starter.model.ucenter.dto.SysLoginDTO;
+import com.jiajun.starter.model.ucenter.dto.SysRegDTO;
 import com.jiajun.starter.model.ucenter.entity.SysUserEntity;
 import com.jiajun.starter.service.ucenter.SysCaptchaService;
 import com.jiajun.starter.service.ucenter.UcenterService;
@@ -40,6 +42,9 @@ public class SysLoginController implements SysLoginControllerApi {
     @Autowired
     private HttpServletRequest request;
 
+    @Autowired
+    private MailUtil mailUtil;
+
     @Override
     @GetMapping("captcha.jpg")
     public void captcha(String uuid) throws IOException {
@@ -52,6 +57,19 @@ public class SysLoginController implements SysLoginControllerApi {
         try (ServletOutputStream out = response.getOutputStream()) {
             ImageIO.write(image, "jpg", out);
         }
+    }
+
+    @Override
+    @PostMapping("getRegCaptcha")
+    public RestResponse<String> getRegCaptcha(@Validated @RequestBody SysRegDTO sysRegDTO) {
+        String captcha = sysCaptchaService.getRegCaptcha(sysRegDTO.getUuid());
+
+        String sb = "【云南交通职业技术教育集团】验证码：<font color='red'>" + captcha +
+                "</font>。<br/> 您正在使用邮箱验证码注册功能，该验证码仅用于身份验证，请勿泄露给他人使用。";
+        mailUtil.sendHtmlMail(sysRegDTO.getEmail(), "注册验证码", sb);
+
+
+        return success(captcha);
     }
 
     @Override
@@ -71,6 +89,7 @@ public class SysLoginController implements SysLoginControllerApi {
     @Override
     @PostMapping("login")
     public RestResponse<String> login(@Validated @RequestBody SysLoginDTO sysLoginDto) {
+        //验证验证码是否正确
         boolean captcha = sysCaptchaService.validate(sysLoginDto.getUuid(), sysLoginDto.getCaptcha());
         if (!captcha) {
             throw new BusinessException(RestCode.CAPTCHA_NOT_CORRECT);

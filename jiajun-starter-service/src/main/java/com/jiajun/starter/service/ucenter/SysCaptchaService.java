@@ -22,4 +22,11 @@ public interface SysCaptchaService {
      * @return
      */
     boolean validate(String uuid, String code);
+
+    /**
+     * 生成5位验证码
+     * @param uuid
+     * @return
+     */
+    String getRegCaptcha(String uuid);
 }

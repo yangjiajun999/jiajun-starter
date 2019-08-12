@@ -13,7 +13,7 @@ import org.springframework.util.CollectionUtils;
 /**
  * @Author: 影风
  * @Date: 2019-08-01 11:46
- * @Description:
+ * @Description: Redis操作工具类
  */
 @Component
 public final class RedisUtil {

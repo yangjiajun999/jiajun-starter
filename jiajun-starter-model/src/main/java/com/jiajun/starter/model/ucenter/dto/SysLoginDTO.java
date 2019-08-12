@@ -13,13 +13,16 @@ import javax.validation.constraints.NotBlank;
  */
 @Data
 public class SysLoginDTO {
-    @ApiModelProperty(value = "username", name = "用户名", example = "admin")
+    @ApiModelProperty(value = "用户名", name = "username", example = "admin", required = true)
     private String username;
-    @ApiModelProperty(value = "password", name = "密码", example = "123456")
+
+    @ApiModelProperty(value = "密码", name = "password", example = "123456", required = true)
     private String password;
-    @ApiModelProperty(value = "captcha", name = "验证码", example = "bbsbb")
+
+    @ApiModelProperty(value = "captcha", name = "验证码", example = "bbsbb", required = true)
     @NotBlank(message = "{captcha.uuid.blank}")
     private String captcha;
-    @ApiModelProperty(value = "uuid", name = "uuid", example = "abcdefgabcdefg")
+
+    @ApiModelProperty(value = "uuid", name = "uuid", example = "abcdefgabcdefg", required = true)
     private String uuid;
 }
