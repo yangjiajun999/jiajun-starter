@@ -1,6 +1,5 @@
 package com.jiajun.starter.ucenter.mapper;
 
-import com.jiajun.starter.model.ucenter.SysUser;
 import com.jiajun.starter.model.ucenter.dto.SysUserDTO;
 import com.jiajun.starter.model.ucenter.entity.SysUserEntity;
 import com.jiajun.starter.model.ucenter.vo.SysUserVO;

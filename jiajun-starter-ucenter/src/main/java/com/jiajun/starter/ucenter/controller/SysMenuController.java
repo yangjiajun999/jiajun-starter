@@ -26,7 +26,7 @@ public class SysMenuController implements SysMenuControllerApi {
     private SysMenuService sysMenuService;
 
     @Override
-    @PostMapping("/list")
+    @PostMapping("/getAll")
     public RestResponse<List<SysMenuEntity>> list() {
         List<SysMenuEntity> menuList = sysMenuService.list();
 

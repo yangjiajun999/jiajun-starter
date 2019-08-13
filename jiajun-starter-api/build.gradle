@@ -6,4 +6,5 @@ dependencies {
     implementation project(":jiajun-starter-common")
 
     implementation swaggerSpringBootStarter
+    implementation pagehelperSpringBootStarter
 }
