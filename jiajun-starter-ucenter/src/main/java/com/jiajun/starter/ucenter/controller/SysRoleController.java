@@ -9,10 +9,7 @@ import com.jiajun.starter.service.ucenter.SysRoleService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static com.jiajun.starter.common.web.RestResponse.success;
 
@@ -32,5 +29,17 @@ public class SysRoleController implements SysRoleControllerApi {
     @PostMapping("getAll")
     public RestResponse<PageInfo<SysRoleVO>> getAll(@Validated @RequestBody SysRoleDTO sysRoleDTO) {
         return success(new PageInfo<>(sysRoleService.getAll(sysRoleDTO)));
+    }
+
+    @Override
+    @GetMapping("/deleteById/{id}")
+    public RestResponse<Boolean> deleteById(@PathVariable int id) {
+        return success(sysRoleService.deleteById(id));
+    }
+
+    @Override
+    @GetMapping("/freezeById/{id}")
+    public RestResponse<Boolean> freezeById(@PathVariable int id) {
+        return success(sysRoleService.freezeById(id));
     }
 }

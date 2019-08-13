@@ -17,4 +17,18 @@ public interface SysRoleService {
      * @return
      */
     List<SysRoleVO> getAll(SysRoleDTO sysRoleDTO);
+
+    /**
+     * 根据id删除角色信息
+     * @param id
+     * @return
+     */
+    boolean deleteById(int id);
+
+    /**
+     * 冻结解冻角色
+     * @param id
+     * @return
+     */
+    boolean freezeById(int id);
 }

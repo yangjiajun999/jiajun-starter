@@ -8,7 +8,7 @@ CREATE TABLE `sys_user`
     `realname`       varchar(50)           DEFAULT NULL COMMENT '真实姓名',
     `mobile`         varchar(100)          DEFAULT NULL COMMENT '手机号',
     `sex`            char(2)               DEFAULT NULL COMMENT '性别',
-    `address`        varchar(50)           DEFAULT NULL COMMENT '性别',
+    `address`        varchar(50)           DEFAULT NULL COMMENT '地址',
     `source`         varchar(10)           DEFAULT NULL COMMENT '来源',
     `status`         tinyint(1)            DEFAULT NULL COMMENT '状态  0：禁用   1：正常',
     `create_user_id` bigint(20)            DEFAULT NULL COMMENT '创建者ID',

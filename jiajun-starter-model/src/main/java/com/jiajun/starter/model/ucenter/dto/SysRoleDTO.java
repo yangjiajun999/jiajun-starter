@@ -16,4 +16,7 @@ public class SysRoleDTO extends AbstractRequestDTO {
 
     @ApiModelProperty(value = "状态", name = "status", example = "1")
     private boolean status = true;
+
+    @ApiModelProperty(value = "创建人", name = "username", example = "admin")
+    private String username;
 }

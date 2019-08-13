@@ -1,4 +1,5 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--suppress ALL -->
 <mapper namespace="com.jiajun.starter.ucenter.mapper.SysRoleMapper">
     <select id="getAll" parameterType="SysRoleDTO" resultType="SysRoleVO">
         SELECT A.role_name AS roleName, A.count, B.status, C.username, B.create_time
@@ -14,6 +15,10 @@
             <if test="roleName != null and roleName != ''">
                 <bind name="roleName" value="'%' + roleName + '%'"/>
                 AND A.role_name LIKE #{roleName}
+            </if>
+            <if test="username != null and username != ''">
+                <bind name="username" value="'%' + username + '%'"/>
+                AND C.username LIKE #{username}
             </if>
             <if test="status != null">
                 AND B.status = #{status}

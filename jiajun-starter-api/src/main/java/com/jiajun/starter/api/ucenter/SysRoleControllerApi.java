@@ -16,4 +16,10 @@ import io.swagger.annotations.ApiOperation;
 public interface SysRoleControllerApi {
     @ApiOperation("获取角色列表信息")
     RestResponse<PageInfo<SysRoleVO>> getAll(SysRoleDTO sysRoleDTO);
+
+    @ApiOperation("删除角色")
+    RestResponse<Boolean> deleteById(int id);
+
+    @ApiOperation("冻结角色")
+    RestResponse<Boolean> freezeById(int id);
 }
