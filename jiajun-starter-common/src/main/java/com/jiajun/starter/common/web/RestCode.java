@@ -14,6 +14,7 @@ public enum RestCode {
     PASSWORD_NOT_CORRECT(1000004, "密码错误"),
     TOKEN_INVALID(1000005, "凭证失效"),
     ACCOUNT_LOCKED(1000006, "账户被锁定"),
+    ROLE_DELETE_FAIL(1000007, "删除角色失败，请先冻结角色"),
     CANCEL(999999, "拒绝访问");
 
     public final int code;

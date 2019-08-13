@@ -37,6 +37,6 @@ public class SysRoleEntity {
     private long userId;
 
     @ApiModelProperty(value = "创建时间", name = "create_time", example = "1")
-    @Column(name = "createTime")
+    @Column(name = "create_time")
     private LocalDateTime createTime;
 }

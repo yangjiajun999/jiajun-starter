@@ -1,6 +1,8 @@
 package com.jiajun.starter.ucenter.service;
 
 import com.github.pagehelper.PageHelper;
+import com.jiajun.starter.common.exception.BusinessException;
+import com.jiajun.starter.common.web.RestCode;
 import com.jiajun.starter.model.ucenter.dto.SysRoleDTO;
 import com.jiajun.starter.model.ucenter.entity.SysRoleEntity;
 import com.jiajun.starter.model.ucenter.entity.SysUserRoleEntity;
@@ -36,6 +38,11 @@ public class SysRoleServiceImpl implements SysRoleService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public boolean deleteById(int id) {
+        SysRoleEntity sysRoleEntity = sysRoleMapper.selectByPrimaryKey(id);
+        if(sysRoleEntity.isStatus()) {
+            throw new BusinessException(RestCode.ROLE_DELETE_FAIL);
+        }
+
         Example example = new Example(SysUserRoleEntity.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("role_id", id);
