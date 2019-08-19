@@ -36,7 +36,7 @@ public class UcenterServiceImpl implements UcenterService {
     }
 
     @Override
-    public SysUserEntity getById(int id) {
+    public SysUserEntity getById(Long id) {
         return ucenterMapper.selectByPrimaryKey(id);
     }
 

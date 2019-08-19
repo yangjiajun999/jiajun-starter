@@ -20,7 +20,7 @@ public class SysUserEntity implements Serializable {
     @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ApiModelProperty(value = "用户名", name = "username", example = "admin")
     @Column(name = "username")
@@ -36,5 +36,5 @@ public class SysUserEntity implements Serializable {
 
     @ApiModelProperty(value = "账户状态", name = "status", example = "true")
     @Column(name = "status")
-    private boolean status;
+    private Boolean status;
 }

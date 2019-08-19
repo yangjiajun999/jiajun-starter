@@ -109,7 +109,7 @@ public class SysLoginController implements SysLoginControllerApi {
         }
 
         //账号锁定
-        if (!user.isStatus()) {
+        if (!user.getStatus()) {
             throw new BusinessException(RestCode.ACCOUNT_LOCKED);
         }
 

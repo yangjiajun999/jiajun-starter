@@ -18,7 +18,7 @@ public class SysRoleEntity {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ApiModelProperty(value = "角色名", name = "role_name", example = "1")
     @Column(name = "role_name")
@@ -26,7 +26,7 @@ public class SysRoleEntity {
 
     @ApiModelProperty(value = "状态", name = "status", example = "1")
     @Column(name = "status")
-    private boolean status;
+    private Boolean status;
 
     @ApiModelProperty(value = "备注", name = "remark", example = "1")
     @Column(name = "remark")
@@ -34,7 +34,7 @@ public class SysRoleEntity {
 
     @ApiModelProperty(value = "创建者ID", name = "create_user_id", example = "1")
     @Column(name = "create_user_id")
-    private long userId;
+    private Long userId;
 
     @ApiModelProperty(value = "创建时间", name = "create_time", example = "1")
     @Column(name = "create_time")

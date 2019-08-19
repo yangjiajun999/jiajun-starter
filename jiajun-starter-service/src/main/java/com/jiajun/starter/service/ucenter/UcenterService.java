@@ -15,7 +15,7 @@ import java.util.List;
 public interface UcenterService {
     List<SysUserVO> getAll(SysUserDTO sysUserDTO);
 
-    SysUserEntity getById(int id);
+    SysUserEntity getById(Long id);
 
     SysUserEntity findByUsername(String username);
 

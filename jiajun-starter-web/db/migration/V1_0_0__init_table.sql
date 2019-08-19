@@ -90,3 +90,17 @@ CREATE TABLE `sys_role_menu`
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='角色与菜单对应关系';
+
+CREATE TABLE `sys_dept`
+(
+    `id`        bigint(20) NOT NULL AUTO_INCREMENT,
+    `parent_id` bigint(20)  DEFAULT NULL COMMENT '上级部门ID，一级部门为0',
+    `name`      varchar(50) DEFAULT NULL COMMENT '部门名称',
+    `order_num` int(11)     DEFAULT NULL COMMENT '排序',
+    `deleted`   tinyint(1)  DEFAULT NULL COMMENT '是否删除  0：已删除  1：正常',
+    PRIMARY KEY (`id`),
+    KEY `idx_parent_id` (`parent_id`, `id`),
+    KEY `idx_deleted` (`deleted`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 2
+  DEFAULT CHARSET = utf8 COMMENT ='部门管理';

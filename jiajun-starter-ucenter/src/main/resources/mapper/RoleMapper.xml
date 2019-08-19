@@ -2,26 +2,25 @@
 <!--suppress ALL -->
 <mapper namespace="com.jiajun.starter.ucenter.mapper.SysRoleMapper">
     <select id="getAll" parameterType="SysRoleDTO" resultType="SysRoleVO">
-        SELECT A.role_name AS roleName, A.count, B.status, C.username, B.create_time
-        FROM (
-                 SELECT role.role_name, COUNT(user_role.user_id) AS count
-                 FROM sys_role role
-                          LEFT JOIN sys_user_role user_role ON role.id = user_role.role_id
-                 GROUP BY role_name
-             ) A
-                 LEFT JOIN sys_role B ON A.role_name = B.role_name
-                 LEFT JOIN sys_user C ON B.create_user_id = C.id
+        SELECT role.role_name AS roleName
+            , (
+                SELECT COUNT(*)
+                FROM sys_user_role user_role
+                WHERE user_role.role_id = role.id
+                AND role.id != 1
+            ) AS count, role.status, user.username, role.create_time
+        FROM sys_role role
         <where>
             <if test="roleName != null and roleName != ''">
                 <bind name="roleName" value="'%' + roleName + '%'"/>
-                AND A.role_name LIKE #{roleName}
+                AND role.role_name LIKE #{roleName}
             </if>
             <if test="username != null and username != ''">
                 <bind name="username" value="'%' + username + '%'"/>
-                AND C.username LIKE #{username}
+                AND user.username LIKE #{username}
             </if>
             <if test="status != null">
-                AND B.status = #{status}
+                AND role.status = #{status}
             </if>
         </where>
     </select>

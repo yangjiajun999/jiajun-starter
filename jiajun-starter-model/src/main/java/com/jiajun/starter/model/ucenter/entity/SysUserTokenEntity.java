@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class SysUserTokenEntity {
-    private long id;
+    private Long id;
     private String username;
     private String token;
 }

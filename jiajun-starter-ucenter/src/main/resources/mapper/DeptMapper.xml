@@ -1,0 +1,14 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--suppress ALL -->
+<mapper namespace="com.jiajun.starter.ucenter.mapper.SysDeptMapper">
+    <select id="list" resultType="SysDeptEntity">
+        SELECT t1.id, t1.name, t1.order_num, t1.parent_id, (
+            SELECT t2.name
+            FROM sys_dept t2
+            WHERE t2.id = t1.parent_id
+        ) AS parentName
+        FROM sys_dept t1
+        WHERE t1.deleted = 0
+        ORDER BY t1.order_num ASC
+    </select>
+</mapper>

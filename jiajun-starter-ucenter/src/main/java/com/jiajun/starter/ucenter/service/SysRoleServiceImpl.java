@@ -39,7 +39,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     @Transactional(rollbackFor = Exception.class)
     public boolean deleteById(int id) {
         SysRoleEntity sysRoleEntity = sysRoleMapper.selectByPrimaryKey(id);
-        if(sysRoleEntity.isStatus()) {
+        if(sysRoleEntity.getStatus()) {
             throw new BusinessException(RestCode.ROLE_DELETE_FAIL);
         }
 
@@ -54,7 +54,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     @Transactional(rollbackFor = Exception.class)
     public boolean freezeById(int id) {
         SysRoleEntity sysRoleEntity = sysRoleMapper.selectByPrimaryKey(id);
-        sysRoleEntity.setStatus(!sysRoleEntity.isStatus());
+        sysRoleEntity.setStatus(!sysRoleEntity.getStatus());
         return sysRoleMapper.updateByPrimaryKey(sysRoleEntity) > 0;
     }
 }

@@ -37,7 +37,7 @@ public class UcenterController extends AbstractController implements UcenterCont
     }
 
     @GetMapping("/getById")
-    public RestResponse<SysUserEntity> getById(@RequestParam(value = "id") int id) {
+    public RestResponse<SysUserEntity> getById(@RequestParam(value = "id") Long id) {
         return success(ucenterService.getById(id));
     }
 }

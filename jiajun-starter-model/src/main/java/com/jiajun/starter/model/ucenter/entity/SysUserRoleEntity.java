@@ -19,13 +19,13 @@ public class SysUserRoleEntity {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ApiModelProperty(value = "用户id", name = "userId", example = "1")
     @Column(name = "user_id")
-    private long userId;
+    private Long userId;
 
     @ApiModelProperty(value = "角色id", name = "roleId", example = "1")
     @Column(name = "role_id")
-    private long roleId;
+    private Long roleId;
 }

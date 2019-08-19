@@ -56,6 +56,6 @@ public class ShiroServiceImpl implements ShiroService {
 
     @Override
     public SysUserEntity findByToken(SysUserTokenEntity tokenEntity) {
-        return ucenterService.getById((int) tokenEntity.getId());
+        return ucenterService.getById(tokenEntity.getId());
     }
 }

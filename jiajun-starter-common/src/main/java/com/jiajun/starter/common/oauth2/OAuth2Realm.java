@@ -68,7 +68,7 @@ public class OAuth2Realm extends AuthorizingRealm {
         SysUserEntity sysUserEntity = shiroService.findByToken(tokenEntity);
 
         //账号锁定
-        if(!sysUserEntity.isStatus()){
+        if(!sysUserEntity.getStatus()){
             throw new BusinessException(RestCode.ACCOUNT_LOCKED);
         }
 
