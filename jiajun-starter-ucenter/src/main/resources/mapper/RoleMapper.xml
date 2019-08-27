@@ -2,8 +2,7 @@
 <!--suppress ALL -->
 <mapper namespace="com.jiajun.starter.ucenter.mapper.SysRoleMapper">
     <select id="getAll" parameterType="SysRoleDTO" resultType="SysRoleVO">
-        SELECT role.role_name AS roleName
-            , (
+        SELECT role.role_name AS roleName, (
                 SELECT COUNT(*)
                 FROM sys_user_role user_role
                 WHERE user_role.role_id = role.id

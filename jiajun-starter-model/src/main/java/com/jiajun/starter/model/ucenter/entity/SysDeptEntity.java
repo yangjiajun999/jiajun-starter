@@ -4,7 +4,9 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @Author: 影风
@@ -37,13 +39,36 @@ public class SysDeptEntity {
 
     @Transient
     @ApiModelProperty(value = "上级部门名称", name = "parentName", example = "研发部")
+    @Column(name = "parentName")
     private String parentName;
 
     @Transient
     @ApiModelProperty(value = "树是否打开", name = "open", example = "1：打开 0：关闭")
-    private Boolean open;
+    private Boolean open = true;
+
+    @Transient
+    @ApiModelProperty(value = "子节点个数", name = "childCount", example = "1")
+    private Integer childCount;
+
+    @Transient
+    @ApiModelProperty(value = "是否是子节点", name = "isLeaf", example = "1:子节点 0:不是子节点")
+    private Boolean isLeaf;
 
     @Transient
     @ApiModelProperty(value = "子节点数据", name = "list", example = "前端组")
-    private List<?> list;
+    private List<SysDeptEntity> list = new ArrayList<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SysDeptEntity entity = (SysDeptEntity) o;
+        return Objects.equals(id, entity.id) &&
+                Objects.equals(name, entity.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
+    }
 }

@@ -2,6 +2,7 @@ package com.jiajun.starter.ucenter.controller;
 
 import com.jiajun.starter.api.ucenter.SysDeptControllerApi;
 import com.jiajun.starter.common.web.RestResponse;
+import com.jiajun.starter.model.ucenter.dto.SysDeptDTO;
 import com.jiajun.starter.model.ucenter.entity.SysDeptEntity;
 import com.jiajun.starter.service.ucenter.SysDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class SysDeptController implements SysDeptControllerApi {
 
     @Override
     @PostMapping("/getAll")
-    public RestResponse<List<SysDeptEntity>> list() {
-        return null;
+    public RestResponse<List<SysDeptEntity>> list(SysDeptDTO sysDeptDTO) {
+        return success(sysDeptService.list(sysDeptDTO));
     }
 }

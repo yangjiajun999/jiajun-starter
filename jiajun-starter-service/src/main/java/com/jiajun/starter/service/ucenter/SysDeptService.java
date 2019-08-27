@@ -1,5 +1,6 @@
 package com.jiajun.starter.service.ucenter;
 
+import com.jiajun.starter.model.ucenter.dto.SysDeptDTO;
 import com.jiajun.starter.model.ucenter.entity.SysDeptEntity;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public interface SysDeptService {
 
     /**
      * 部门管理列表
+     * @param sysDeptDTO
      */
-    List<SysDeptEntity> list();
+    List<SysDeptEntity> list(SysDeptDTO sysDeptDTO);
 }

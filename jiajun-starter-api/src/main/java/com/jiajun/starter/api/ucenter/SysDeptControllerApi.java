@@ -1,6 +1,7 @@
 package com.jiajun.starter.api.ucenter;
 
 import com.jiajun.starter.common.web.RestResponse;
+import com.jiajun.starter.model.ucenter.dto.SysDeptDTO;
 import com.jiajun.starter.model.ucenter.entity.SysDeptEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -18,5 +19,5 @@ public interface SysDeptControllerApi {
     RestResponse<List<SysDeptEntity>> getSubById(long id);
 
     @ApiOperation("获取部门列表")
-    RestResponse<List<SysDeptEntity>> list();
+    RestResponse<List<SysDeptEntity>> list(SysDeptDTO sysDeptDTO);
 }
